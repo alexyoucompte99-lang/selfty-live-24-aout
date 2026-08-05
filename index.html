@@ -40,12 +40,18 @@
 
   :root {
     --prune: #5D2B4A;
-    --brun: #795E4D;
+    --brun: #6E5343;
     --terracotta: #C98B7C;
     --creme: #FFE7D2;
     --nuit: #1E2748;
     --papier: #F8F4EE;
     --blanc: #FFFDFB;
+
+    /* Le terracotta de la charte (#C98B7C) ne fait que 2,6:1 sur le papier :
+       illisible dès qu'il porte du texte. On le garde tel quel pour les
+       filets, les puces et les anneaux — purement décoratifs — et on passe
+       à cette version foncée (5,1:1) partout où il y a des mots à lire. */
+    --terracotta-texte: #9E5340;
 
     --filet: rgba(93, 43, 74, 0.16);
     --filet-clair: rgba(201, 139, 124, 0.34);
@@ -148,7 +154,7 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.32;
+    opacity: 0.2; /* au-delà, le grain vient moucheter le texte et le salit */
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
   }
@@ -220,7 +226,7 @@
     0%, 100% { transform: scale(1); opacity: 0.75; }
     38%      { transform: scale(1.12); opacity: 1; }
   }
-  .rail .rail-droite { color: var(--terracotta); }
+  .rail .rail-droite { color: var(--terracotta-texte); }
 
   /* Le fil : une ligne qui se dessine en descendant la page */
   .fil {
@@ -273,7 +279,8 @@
   }
   .souffle i { position: absolute; inset: 0; border-radius: 50%; display: block; }
   .souffle .halo {
-    background: radial-gradient(circle, rgba(201, 139, 124, 0.20) 0%, rgba(255, 231, 210, 0.46) 46%, rgba(255, 231, 210, 0) 72%);
+    /* Assez léger pour ne pas venir troubler le titre qui passe dessus */
+    background: radial-gradient(circle, rgba(201, 139, 124, 0.11) 0%, rgba(255, 231, 210, 0.30) 46%, rgba(255, 231, 210, 0) 72%);
     animation: respire 11s cubic-bezier(0.45, 0, 0.35, 1) infinite;
   }
   .souffle .anneau-1 {
@@ -381,7 +388,7 @@
     50%      { opacity: 0.35; transform: scale(0.75); }
   }
   .badge-date .compte {
-    color: var(--terracotta);
+    color: var(--terracotta-texte);
     padding-left: 10px;
     border-left: 1px solid var(--filet-clair);
   }
@@ -397,7 +404,7 @@
     margin-bottom: 26px;
     text-wrap: balance;
   }
-  h1 em { font-style: normal; color: var(--terracotta); }
+  h1 em { font-style: normal; color: var(--terracotta-texte); }
 
   /* Révélation ligne à ligne, par masque */
   /* padding-bottom : Eros descend bas, sans ça overflow:hidden couperait
@@ -412,9 +419,10 @@
   @keyframes monte-ligne { to { transform: translateY(0); } }
 
   .sous-titre {
-    font-size: 16.5px;
+    font-size: 17.5px;
+    line-height: 1.6;
     color: var(--brun);
-    max-width: 470px;
+    max-width: 480px;
     margin: 0 auto 16px;
   }
   .animatrice {
@@ -691,7 +699,7 @@
   .mot .signature {
     font-family: var(--display);
     font-size: 31px;
-    color: var(--terracotta);
+    color: var(--terracotta-texte);
     margin-top: 14px;
     line-height: 1;
   }
@@ -731,7 +739,7 @@
     max-width: 540px;
     margin: 0 auto 14px;
   }
-  .citation em { font-style: normal; color: var(--terracotta); }
+  .citation em { font-style: normal; color: var(--terracotta-texte); }
   .citation .mot-a-mot {
     display: inline-block;
     opacity: 0;
@@ -800,7 +808,7 @@
     line-height: 1.75;
     transition: color 0.3s ease;
   }
-  .champ:focus-within label.etiquette { color: var(--terracotta); }
+  .champ:focus-within label.etiquette { color: var(--terracotta-texte); }
 
   .boite { position: relative; }
   /* Le trait terracotta qui se tire sous le champ au focus */
@@ -1031,7 +1039,7 @@
   }
   footer .devise {
     margin-top: 8px;
-    opacity: 0.6;
+    opacity: 0.82;
     font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;

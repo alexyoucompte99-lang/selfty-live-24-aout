@@ -1533,7 +1533,11 @@ const CONFIG = {
   DUREE_MIN: 90, // durée du live, pour l'événement d'agenda
   TITRE_AGENDA: "Live Selfty Academy avec Anaïs",
   DETAILS_AGENDA: "Anaïs coache en direct une coach de la communauté et décrypte chaque outil qu'elle utilise.\n\nLe lien de connexion arrive sur WhatsApp et par e-mail juste avant le début.",
-  WEBHOOK_URL: "", // ex : "https://script.google.com/macros/s/XXXX/exec"
+  // Apps Script « Selfty - webhook inscriptions live », déployé le 7 août 2026.
+  // Écrit dans l'onglet « Inscriptions » du classeur Candidature Webi,
+  // en upsert sur l'e-mail. Si tu redéploies en créant un NOUVEAU
+  // déploiement, l'URL change : il faut la remettre ici.
+  WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxelvzI5Y9BFhrZTsJkkWgoGm3ql88c1rLpmJq3gPzsDWZWcvhgyNGwAyIkDrYvpRoL5A/exec",
   WHATSAPP_URL: "", // lien d'invitation de la communauté WhatsApp privée
   TEMOIGNAGES: [
     // Vidéos témoignages (Yomi, etc.) : liens d'intégration YouTube ou Vimeo.
